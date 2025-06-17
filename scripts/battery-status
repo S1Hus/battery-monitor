@@ -1,0 +1,25 @@
+#!/bin/bash
+FILE="/var/log/battery-monitor.log"
+
+if [ ! -s "$FILE" ]; then
+  echo "Charger is currently plugged in. No Battery discharge uptime to report."
+  exit 0
+fi
+
+LAST=$(cat "$FILE")
+NOW=$(date +%s)
+DIFF=$((NOW - LAST))
+
+D=$((DIFF / 60 / 60 / 24))
+H=$((DIFF / 60 / 60 % 24))
+M=$((DIFF / 60 % 60))
+S=$((DIFF % 60))
+
+output=()
+(($D > 0)) && output+=("$D days")
+(($H > 0)) && output+=("$H hours")
+(($M > 0)) && output+=("$M minutes")
+output+=("and $S seconds ago\n")
+
+printf "Time to last charge was: \n"
+printf "${output[*]}"
