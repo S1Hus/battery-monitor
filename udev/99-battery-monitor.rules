@@ -1,1 +1,1 @@
-SUBSYSTEM=="power_supply", ATTR{online}=="*", ATTR{type}=="Mains", RUN+="/opt/battery-monitor/battery-event-handler.sh"
+SUBSYSTEM=="power_supply", ATTR{online}=="*", ATTR{type}=="Mains", RUN+="/usr/local/bin/battery-event-handler.sh"
