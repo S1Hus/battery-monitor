@@ -24,6 +24,16 @@ A Linux tool that displays the time elapsed since a laptop was last plugged into
 ```
   echo 'alias battery-status="~/.local/bin/battery-status"'
 ```
+5. Reload udev rules
+run the reload command
+```
+  sudo udevadm control --reload-rules
+```
+
+To manually trigger the rule then run
+```
+  sudo udevadm trigger
+```
 
 ## how to run 
 Run the battery-status command
